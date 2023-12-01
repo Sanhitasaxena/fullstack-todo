@@ -1,0 +1,7 @@
+.foot{
+    display: flex;
+    justify-content: center;
+    background-image:linear-gradient(lightpink , lightblue);
+    height: 100px;
+    
+}

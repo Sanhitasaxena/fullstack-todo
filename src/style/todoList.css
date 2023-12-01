@@ -1,0 +1,30 @@
+.container-todoList{
+    height: 400px;
+    width: 300px;
+    /* background-color: yellow; */
+}
+
+li{
+    list-style: none;
+    padding: 7px;
+    border: 5px double powderblue;
+    border-radius: 12px;
+    margin-top: 20px;
+
+    box-shadow: 3px 3px rgb(100, 100, 170);
+}
+
+.cross{
+    position: relative;
+    left: 170px;
+    cursor: pointer;
+    padding: 4px 8px;
+}
+
+.cross:hover{
+    background-color: red;
+    color: white;
+}
+
+
+

@@ -1,0 +1,77 @@
+.cover{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    /* text-align: center; */
+    align-items: center;
+    /* background-color: red; */
+    padding-top: 100px;
+    /* margin-top: 40px; */
+
+    
+
+}
+
+.container{
+    display: flex;
+    justify-content: center ;
+    gap: 150px;
+    align-items: center;
+   
+}
+/* style for the button element */
+.btn{
+    padding: 15px 32px;
+    background-color: transparent;
+    font-size: 16px;
+    outline: none;
+    border: none;
+    color: black;
+    cursor: pointer;
+    border-radius: 12px;
+    text-decoration: none;
+    border: 1.4px solid #008CBA; 
+
+}
+
+.btn:hover{
+    background-color: #008CBA;
+    color: white;
+}
+
+/* style for the input element */
+.todo-input {
+    position: relative;
+    width: 300px;
+}
+
+.todo-input input {
+    border: 2px solid #000;
+    padding: 10px;
+    font-size: 16px;
+    outline: none;
+    width: 100%;
+    transition: border 0.3s;
+}
+
+.todo-input label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 16px;
+    color: #000;
+    transition: all 0.3s;
+    pointer-events: none;
+}
+
+.todo-input input:focus + label, .todo-input input:valid + label {
+    top: -7px;
+    font-size: 13px;
+    color: #888;
+    background-color: white;
+    padding: 3px;
+}
+
+
+
+
