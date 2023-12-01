@@ -9,20 +9,20 @@ export const ListContext = createContext();
 function Cover() {
   const [todoList, setTodoList] = useState();
   const [currentInputValue, setCurrentInputValue] = useState("");
+  const [editValue, setEditValue] = useState("");
 
   const data = {
     inputValue: currentInputValue,
     id: uuidv4()
   }
 
-  const addItem = async()=>{
+  const addItem = async(data)=>{
      try {
-      // setCurrentInputValue(currentInputValue);
       console.log("sending data", data);
       const response = await axios.post("http://localhost:8000/addTodo", data)
       console.log("response data",response.data);
-      getAllTodos()
-      // setCurrentInputValue("")
+      await getAllTodos()
+      setCurrentInputValue("")
      } catch (error) {
       console.log(error);
      }
@@ -35,7 +35,6 @@ function Cover() {
       setTodoList(todos.data)
      } catch (error) {
       console.log(error);
-      // res.status(500).send({message: "something went wrong"})
      }
   }
 
@@ -74,7 +73,7 @@ function Cover() {
               <button
                 className="btn"
                 onClick={() => {
-                  addItem()
+                  addItem(data)
                 }}
               >
                 Add Item
@@ -83,8 +82,6 @@ function Cover() {
               >
                 save item
               </button> */}
-              <button className="btn"
-              onClick={getAllTodos}>Show all Todo's</button>
             </div>
           </div>
           <TodoList />
