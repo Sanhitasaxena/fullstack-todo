@@ -9,6 +9,7 @@ import { Form } from "react-bootstrap";
 
 const TodoList = () => {
   const [editItemValue, setEdititemvalue] = useState("");
+  const [edittedItem, setEdittedItem] = useState("")
   const { todoList, getAllTodos, currentInputValue, setCurrentInputValue } =
     useContext(ListContext);
 
@@ -33,15 +34,23 @@ const TodoList = () => {
 
   // modal states
   const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
+
+  const handleClose = async (uniqueId) => {
+     try {
+      // console.log(uniqueId);
+      const response = await axios.put(
+        `http://localhost:8000/updateTodo/${uniqueId}`, {edittedItem})
+      console.log(response);
+      // getAllTodos()
+     } catch (error) {
+      console.log(error);
+     }
+      
+  };
   const handleShow = () => setShow(true);
 
   return (
     <>
-      <div
-      // className="modal show"
-      // style={{ display: "block", position: "inherit" }}
-      ></div>
       <div>
         <ul className="container-todoList">
           {todoList
@@ -66,7 +75,7 @@ const TodoList = () => {
                           className="cross"
                           onClick={(e) => {
                             editListItem(uniqueId);
-                            setEdititemvalue(todo.TodoName);
+                            setEdititemvalue(todo.TodoName)
                           }}
                         >
                           edit
@@ -83,6 +92,12 @@ const TodoList = () => {
                               >
                                 <Form.Label>Enter Todo</Form.Label>
                                 <Form.Control
+                                  onChange={(e) => {
+                                    console.log(e.target.value);
+                                    // setEdititemvalue(todo.TodoName);
+                                    //  edditedItem(e.target.value)
+                                    setEdittedItem(e.target.value)
+                                  }}
                                   type="text"
                                   placeholder={editItemValue}
                                   // value={todo.TodoName}
@@ -95,7 +110,13 @@ const TodoList = () => {
                             <Button variant="secondary" onClick={handleClose}>
                               Close
                             </Button>
-                            <Button variant="primary" onClick={handleClose}>
+                            <Button
+                              variant="primary"
+                              onClick={() => {
+                                console.log(todo);
+                                handleClose(uniqueId);
+                              }}
+                            >
                               Save Changes
                             </Button>
                           </Modal.Footer>
